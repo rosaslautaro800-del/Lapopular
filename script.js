@@ -60,6 +60,36 @@ const camisetas = [
     {   nombre: "Manchester City Titular 2026",
         categoria: "europa",
         imagen: "img/city2027.jpg"
+    },
+
+      {   nombre: "Brasil Titular 2026",
+        categoria: "selecciones",
+        imagen: "img/brasiltitular.jpg"
+    },
+
+      {   nombre: "Manchester United Titular 2026",
+        categoria: "europa",
+        imagen: "img/united2026.jpg"
+    },
+
+      {   nombre: "Liverpool Titular 2026",
+        categoria: "europa",
+        imagen: "img/liverpool.png"
+    },
+
+      {   nombre: "Palmeiras Suplente 2026",
+        categoria: "nacional",
+        imagen: "img/palmeiras.jpeg"
+    },
+
+      {   nombre: "Manchester City Titular 2026",
+        categoria: "europa",
+        imagen: "img/city2027.jpg"
+    },
+
+      {   nombre: "Barcelona Retro 2026",
+        categoria: "europa",
+        imagen: "img/fermin2.png"
     }  
 ];
 
