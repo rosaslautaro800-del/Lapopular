@@ -55,7 +55,12 @@ const camisetas = [
     {   nombre: "PSG Quinta 2026",
         categoria: "europa",
         imagen: "img/psgsuplente.jpg"
-    }    
+    }
+    
+    {   nombre: "Manchester City Titular 2026",
+        categoria: "europa",
+        imagen: "img/city2027.jpg"
+    }  
 ];
 
 // =========================================
