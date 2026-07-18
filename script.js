@@ -57,11 +57,6 @@ const camisetas = [
         imagen: "img/psgsuplente.jpg"
     },
     
-    {   nombre: "Manchester City Titular 2026",
-        categoria: "europa",
-        imagen: "img/city2027.jpg"
-    },
-
       {   nombre: "Brasil Titular 2026",
         categoria: "selecciones",
         imagen: "img/brasiltitular.jpg"
