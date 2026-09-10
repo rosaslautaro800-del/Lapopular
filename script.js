@@ -90,6 +90,7 @@ const camisetas = [
       {   nombre: "Racing Titular 2026",
         categoria: "nacional",
         imagen: "img/racing2026.jpg"
+      }
 ];
 
 // =========================================
