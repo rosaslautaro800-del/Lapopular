@@ -95,7 +95,7 @@ const camisetas = [
         categoria: "nacional",
         imagen: "img/boca2026.jpg"
       },
-    {   nombre: "Boca 120 años "Aniversario"",
+    {   nombre: "Boca 120 años Aniversario",
         categoria: "nacional",
         imagen: "img/boca120.jpg"
       },
