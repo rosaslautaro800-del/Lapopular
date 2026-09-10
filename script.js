@@ -90,6 +90,34 @@ const camisetas = [
       {   nombre: "Racing Titular 2026",
         categoria: "nacional",
         imagen: "img/racing2026.jpg"
+      },
+    {   nombre: "Boca Titular 2026",
+        categoria: "nacional",
+        imagen: "img/boca2026.jpg"
+      },
+    {   nombre: "Boca 120 años "Aniversario"",
+        categoria: "nacional",
+        imagen: "img/boca120.jpg"
+      },
+    {   nombre: "River Titular 2026",
+        categoria: "nacional",
+        imagen: "img/rivertitular2027.jpg"
+      },
+    {   nombre: "River Suplente 2026",
+        categoria: "nacional",
+        imagen: "img/river2027.jpg"
+      },
+    {   nombre: "Barcelona Suplente 2026",
+        categoria: "europa",
+        imagen: "img/barcelonamorada.jpg"
+      },
+    {   nombre: "Barcelona Titular 2026",
+        categoria: "europa",
+        imagen: "img/barca2027.jpg"
+      },
+    {   nombre: "COMO Titular 2026",
+        categoria: "europa",
+        imagen: "img/Como.jpg"
       }
 ];
 
