@@ -85,7 +85,11 @@ const camisetas = [
       {   nombre: "Barcelona Retro 2026",
         categoria: "europa",
         imagen: "img/fermin2.png"
-    }  
+     },
+
+      {   nombre: "Racing Titular 2026",
+        categoria: "nacional",
+        imagen: "img/racing2026.jpg"
 ];
 
 // =========================================
