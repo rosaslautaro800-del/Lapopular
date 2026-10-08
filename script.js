@@ -120,7 +120,92 @@ const camisetas = [
         imagen: "img/Como.jpg"
       }
 ];
+// =========================================
+// SHORTS
+// =========================================
 
+const shorts = [
+
+    {
+        nombre: "River Plate Short",
+        imagen: "img/rivershort.png"
+    },
+
+    {
+        nombre: "Milan Short",
+        imagen: "img/modricshort.jpg"
+    },
+
+    {
+        nombre: "Argentina Entrenamiento Short",
+        imagen: "img/messishort.jpg"
+    },
+
+    {
+        nombre: "Juventus Short",
+        imagen: "img/yildizshort.jpg"
+    },
+
+    {
+        nombre: "Holanda Short",
+        imagen: "img/gakposhort.jpg"
+    },
+
+    {
+        nombre: "Bayern Munich Short",
+        imagen: "img/musialashort.jpg"
+    }
+
+];
+
+
+// =========================================
+// MOSTRAR SHORTS
+// =========================================
+
+const contenedorShorts = document.getElementById("contenedorShorts");
+
+function mostrarShorts(lista){
+
+    contenedorShorts.innerHTML = "";
+
+    lista.forEach(short => {
+
+        const card = document.createElement("div");
+
+        card.className = "card";
+
+        card.innerHTML = `
+
+            <img 
+                src="${short.imagen}" 
+                alt="${short.nombre}" 
+                class="producto-img"
+            >
+
+            <div class="info">
+
+                <h3>${short.nombre}</h3>
+
+                <p>Calidad Premium</p>
+
+                <button onclick="consultar('${short.nombre}')">
+
+                    CONSULTAR
+
+                </button>
+
+            </div>
+
+        `;
+
+        contenedorShorts.appendChild(card);
+
+    });
+
+}
+
+mostrarShorts(shorts);
 // =========================================
 // MOSTRAR PRODUCTOS
 // =========================================
