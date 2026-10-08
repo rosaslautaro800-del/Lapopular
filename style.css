@@ -166,7 +166,42 @@ nav a:hover{
     width:90%;
     max-width:1400px;
     margin:auto;
+/* ===========================
+   SHORTS
+=========================== */
 
+.shorts-section{
+
+    width:90%;
+    max-width:1400px;
+    margin:140px auto 0;
+
+}
+
+.shorts-section h2{
+
+    text-align:center;
+    margin-bottom:15px;
+    font-size:40px;
+
+}
+
+.shorts-subtitle{
+
+    text-align:center;
+    color:#aaa;
+    margin-bottom:50px;
+    font-size:16px;
+
+}
+
+.shorts-section .productos{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+
+}
 }
 
 .productos-section h2{
