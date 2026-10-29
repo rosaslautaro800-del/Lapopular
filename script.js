@@ -144,7 +144,12 @@ const camisetas = [
 ];
 
 const shorts = [
-    { nombre: "River Plate Short", categoria: "shorts", imagen: "img/rivershort.png", precio: null, talles: ["S", "M", "L", "XL"] },
+    { nombre: "River Plate Short", categoria: "shorts", imagen: "img/shortriver.png", imagenes: [
+       "img/shortriver3.png",
+       "img/rivershort1.png",
+       "img/riversort1.png"
+       ],
+       precio: 41990, talles: ["Sin Stock"] },
     { nombre: "Milan Short", categoria: "shorts", imagen: "img/milanshort3.png", imagenes: [
             "img/milanshort2.png",
             "img/milanshort.png" ,
