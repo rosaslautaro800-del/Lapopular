@@ -50,7 +50,7 @@ const camisetas = [
             "img/flores5.png"
                    ],
         precio: 49990,
-        talles: ["XL" "L"]
+        talles: ["XL","L"]
    },
     {
         nombre: "River Aniversario 125 Años",
