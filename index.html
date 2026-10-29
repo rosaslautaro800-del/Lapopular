@@ -198,7 +198,27 @@
     <div id="modalProducto" class="modal-producto" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="detalleNombre">
         <div class="ficha">
             <button class="cerrar-producto" type="button" aria-label="Cerrar ficha">&times;</button>
-            <div class="detalle-imagen"><img id="detalleImg" src="" alt=""></div>
+            
+<div class="detalle-imagen" id="galeriaProducto">
+
+    <button id="detalleAnterior" class="galeria-flecha anterior"
+        type="button" aria-label="Foto anterior">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <img id="detalleImg" src="" alt="">
+
+    <button id="detalleSiguiente" class="galeria-flecha siguiente"
+        type="button" aria-label="Foto siguiente">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <span id="detalleContador" class="galeria-contador">1 / 1</span>
+
+    <div id="detalleIndicadores" class="galeria-indicadores"></div>
+
+</div>
+
             <div class="detalle-info">
                 <span id="detalleCategoria" class="detalle-categoria"></span>
                 <h2 id="detalleNombre"></h2>
