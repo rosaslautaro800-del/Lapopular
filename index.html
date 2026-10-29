@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,214 +6,211 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>La Popular | Camisetas Premium</title>
+    <title>La Popular | Camisetas y Shorts Premium</title>
+    <meta name="description" content="Descubrí la colección de camisetas de fútbol nacionales, internacionales y retro, además de shorts premium. Consultá por WhatsApp en La Popular.">
+    <meta name="theme-color" content="#0B1F3A">
 
-    <link rel="icon" href="img/logo.png">
+    <link rel="icon" href="img/logo.png" type="image/png">
 
-    <!-- Google Fonts -->
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
+    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+    <!-- Estilos -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- ================= HEADER ================= -->
-
+    <!-- HEADER -->
     <header>
-
         <div class="logo">
-            <img src="img/logo.png" alt="La Popular">
+            <a href="#inicio" aria-label="La Popular - Inicio">
+                <img src="img/logo.png" alt="Logo de La Popular">
+            </a>
         </div>
 
-        <nav>
-
-    <a href="#inicio">Inicio</a>
-    <a href="#productos">Camisetas</a>
-    <a href="#shorts">Shorts</a>
-    <a href="#contacto">Contacto</a>
-
-</nav>
-
+        <nav aria-label="Navegación principal">
+            <a href="#inicio">Inicio</a>
+            <a href="#productos">Camisetas</a>
+            <a href="#shorts">Shorts</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
     </header>
 
-    <!-- ================= HERO ================= -->
+    <main>
 
-    <section id="inicio" class="hero">
+        <!-- PORTADA -->
+        <section id="inicio" class="hero">
+            <img src="img/logo.png" class="hero-logo" alt="La Popular" fetchpriority="high">
 
-        <img src="img/logo.png" class="hero-logo" alt="Logo">
+            <h1>LA POPULAR</h1>
 
-        <h1>LA POPULAR</h1>
+            <p>
+                Tu pasión, tus colores.<br>
+                Camisetas y shorts de calidad premium.
+            </p>
 
-        <p>
-            Camisetas nacionales, internacionales y retro.<br>
-            Calidad Premium.
-        </p>
+            <a href="#productos" class="btn">
+                <i class="fas fa-shirt" aria-hidden="true"></i>
+                Ver colección
+            </a>
+        </section>
 
-        <a href="#productos" class="btn">
-            Ver Colección
-        </a>
+        <!-- BUSCADOR DE CAMISETAS -->
+        <section class="buscador" aria-label="Buscar camisetas">
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Buscar camiseta..."
+                aria-label="Buscar una camiseta por nombre"
+                autocomplete="off">
+        </section>
 
-    </section>
+        <!-- CATEGORÍAS -->
+        <section class="categorias" aria-label="Filtrar camisetas por categoría">
+            <button type="button" class="active" data-filter="todos" aria-pressed="true">
+                Todas
+            </button>
 
-    <!-- ================= BUSCADOR ================= -->
+            <button type="button" data-filter="europa" aria-pressed="false">
+                Europa
+            </button>
 
-    <section class="buscador">
+            <button type="button" data-filter="selecciones" aria-pressed="false">
+                Selecciones
+            </button>
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="🔍 Buscar camiseta..."
-        >
+            <button type="button" data-filter="nacional" aria-pressed="false">
+                Nacional
+            </button>
 
-    </section>
+            <button type="button" data-filter="retro" aria-pressed="false">
+                Retro
+            </button>
+        </section>
 
-    <!-- ================= CATEGORÍAS ================= -->
+        <!-- CAMISETAS -->
+        <section id="productos" class="productos-section">
+            <h2>Nuestra colección</h2>
 
-    <section class="categorias">
+            <div id="contenedorProductos" class="productos">
+                <!-- Las tarjetas se generan desde script.js -->
+            </div>
+        </section>
 
-        <button class="active" data-filter="todos">
-            Todas
-        </button>
+        <!-- SHORTS -->
+        <section id="shorts" class="shorts-section productos-section">
+            <h2>Shorts</h2>
 
-        <button data-filter="europa">
-            Europa
-        </button>
+            <p class="shorts-subtitle">
+                Completá tu look con nuestros shorts premium.
+            </p>
 
-        <button data-filter="selecciones">
-            Selecciones
-        </button>
+            <div id="contenedorShorts" class="productos">
+                <!-- Los shorts se generan desde script.js -->
+            </div>
+        </section>
 
-        <button data-filter="nacional">
-            Nacional
-        </button>
+        <!-- BENEFICIOS -->
+        <section class="beneficios" aria-label="Beneficios de La Popular">
 
-        <button data-filter="retro">
-            Retro
-        </button>
+            <div class="beneficio">
+                <i class="fas fa-shirt" aria-hidden="true"></i>
+                <h3>Calidad premium</h3>
+                <p>Prendas con excelentes terminaciones y detalles.</p>
+            </div>
 
-    </section>
+            <div class="beneficio">
+                <i class="fas fa-ruler" aria-hidden="true"></i>
+                <h3>Variedad de talles</h3>
+                <p>Consultá la disponibilidad de talles de cada modelo.</p>
+            </div>
 
-    <!-- ================= PRODUCTOS ================= -->
+            <div class="beneficio">
+                <i class="fas fa-truck-fast" aria-hidden="true"></i>
+                <h3>Envíos</h3>
+                <p>Consultanos por las opciones de envío disponibles.</p>
+            </div>
 
-    <section id="productos" class="productos-section">
+        </section>
 
-        <h2>Nuestra Colección</h2>
+        <!-- CONTACTO -->
+        <section id="contacto" class="contacto">
+            <h2>Seguinos</h2>
 
-        <div id="contenedorProductos" class="productos">
+            <p>Encontrá novedades y nuevos ingresos en @lapopular.fut</p>
 
-            <!-- Script.js genera todas las tarjetas -->
+            <a
+                href="https://instagram.com/lapopular.fut"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="instagram-btn">
 
-        </div>
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+                Seguinos en Instagram
+            </a>
+        </section>
 
-    </section>
-    <!-- ================= SHORTS ================= -->
+    </main>
 
-<section id="shorts" class="shorts-section">
-
-    <h2>Shorts</h2>
-
-    <p class="shorts-subtitle">
-        Completá tu look con nuestros shorts premium.
-    </p>
-
-    <div id="contenedorShorts" class="productos">
-
-        <!-- Script.js genera los shorts -->
-
-    </div>
-
-</section>
-
-    <!-- ================= BENEFICIOS ================= -->
-
-    <section class="beneficios">
-
-        <div class="beneficio">
-            <i class="fas fa-shirt"></i>
-            <h3>Calidad Premium</h3>
-            <p>Terminaciones de excelente calidad.</p>
-        </div>
-
-        <div class="beneficio">
-            <i class="fas fa-futbol"></i>
-            <h3>Todos los Talles</h3>
-            <p>S · M · L · XL · XXL</p>
-        </div>
-
-        <div class="beneficio">
-            <i class="fas fa-truck-fast"></i>
-            <h3>Envíos</h3>
-            <p>Envíos a todo el país.</p>
-        </div>
-
-    </section>
-
-    <!-- ================= INSTAGRAM ================= -->
-
-    <section id="contacto" class="contacto">
-
-        <h2>Seguinos</h2>
-
-        <p>@lapopular.fut</p>
-
-        <a href="https://instagram.com/lapopular.fut" target="_blank" class="instagram-btn">
-
-            <i class="fab fa-instagram"></i>
-
-            Instagram
-
-        </a>
-
-    </section>
-
-    <!-- ================= FOOTER ================= -->
-
+    <!-- FOOTER -->
     <footer>
-
-        <img src="img/logo.png" alt="Logo">
+        <a href="#inicio" aria-label="Volver al inicio">
+            <img src="img/logo.png" alt="La Popular">
+        </a>
 
         <p>© 2026 La Popular.</p>
-
         <p>Todos los derechos reservados.</p>
-
     </footer>
 
-    <!-- ================= BOTÓN WHATSAPP ================= -->
-
+    <!-- WHATSAPP -->
     <a
         href="https://wa.me/5492645782637"
         class="whatsapp"
         target="_blank"
-        aria-label="WhatsApp">
+        rel="noopener noreferrer"
+        aria-label="Contactar a La Popular por WhatsApp">
 
-        <i class="fab fa-whatsapp"></i>
-
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
     </a>
 
-    <!-- ================= BOTÓN SUBIR ================= -->
+    <!-- VOLVER ARRIBA -->
+    <button
+        id="topBtn"
+        type="button"
+        aria-label="Volver arriba"
+        title="Volver arriba">
 
-    <button id="topBtn">
-
-        <i class="fas fa-chevron-up"></i>
-
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
     </button>
 
-    <!-- ================= MODAL ================= -->
+    <!-- MODAL DE IMAGEN -->
+    <div
+        id="modal"
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Vista ampliada del producto"
+        aria-hidden="true">
 
-    <div id="modal" class="modal">
+        <button
+            type="button"
+            class="cerrar"
+            aria-label="Cerrar imagen ampliada">
 
-        <span class="cerrar">&times;</span>
+            &times;
+        </button>
 
         <img id="modalImg" src="" alt="">
-
     </div>
 
+    <!-- JavaScript -->
     <script src="script.js"></script>
 
 </body>
-
 </html>
