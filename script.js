@@ -211,6 +211,7 @@ function mostrarShorts(lista) {
    CARRUSEL DE FOTOS
 ========================================= */
 
+
 function actualizarGaleria() {
     if (!productoSeleccionado || !detalleImg) return;
 
@@ -219,14 +220,14 @@ function actualizarGaleria() {
 
     indiceImagen = (indiceImagen + total) % total;
 
-    detalleImg.src = imagenesProducto[indiceImagen];
-    detalleImg.alt =
-        `${productoSeleccionado.nombre} — Foto ${indiceImagen + 1}`;
+    const nuevaRuta = imagenesProducto[indiceImagen];
 
+    // Cambiar el contador y los indicadores inmediatamente.
     const hayVariasFotos = total > 1;
 
     if (fotoAnterior) fotoAnterior.hidden = !hayVariasFotos;
     if (fotoSiguiente) fotoSiguiente.hidden = !hayVariasFotos;
+
     if (contadorFotos) {
         contadorFotos.hidden = !hayVariasFotos;
         contadorFotos.textContent = `${indiceImagen + 1} / ${total}`;
@@ -243,8 +244,10 @@ function actualizarGaleria() {
                 punto.className = "galeria-punto";
                 punto.classList.toggle("activo", indice === indiceImagen);
                 punto.setAttribute("aria-label", `Ver foto ${indice + 1}`);
-                punto.setAttribute("aria-current",
-                    indice === indiceImagen ? "true" : "false");
+                punto.setAttribute(
+                    "aria-current",
+                    indice === indiceImagen ? "true" : "false"
+                );
 
                 punto.addEventListener("click", () => {
                     indiceImagen = indice;
@@ -255,14 +258,19 @@ function actualizarGaleria() {
             });
         }
     }
+
+    // Mostrar la imagen cuando esté cargada.
+    if (detalleImg.dataset.rutaActual === nuevaRuta && detalleImg.complete) {
+        return;
+    }
+
+    detalleImg.alt =
+        `${productoSeleccionado.nombre} — Foto ${indiceImagen + 1}`;
+
+    detalleImg.src = nuevaRuta;
+    detalleImg.dataset.rutaActual = nuevaRuta;
 }
 
-function cambiarImagen(direccion) {
-    if (imagenesProducto.length <= 1) return;
-
-    indiceImagen += direccion;
-    actualizarGaleria();
-}
 
 /* ABRIR FICHA DEL PRODUCTO */
 
