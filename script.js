@@ -97,17 +97,17 @@ const camisetas = [
         talles: ["Sin Stock"]
      },
     {
-        nombre: "River Titular Manga Largas Andrada 26/27",
-        categoria: "nacional",
-        imagen: "img/riiver4.png",
-        imagenes: [
-            "img/riiver3.png",
-            "img/riiver1.png",
-            "img/riiver2.png"
-                   ],
-        precio: 49990,
-        talles: ["Sin Stock"]
-      },
+    nombre: "River Titular Manga Largas Andrada 26/27",
+    categoria: "nacional",
+    imagen: "img/riiver4.png",
+    imagenes: [
+        "img/riiver3.png",
+        "img/riiver1.png",
+        "img/riiver2.png"
+    ],
+    precio: 49990,
+    talles: ["Sin Stock"]
+},
     {
         nombre: "River Titular 26/27",
         categoria: "nacional",
