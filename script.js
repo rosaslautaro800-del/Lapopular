@@ -16,15 +16,48 @@ const camisetas = [
     { nombre: "Manchester City Titular 26/27", categoria: "europa", imagen: "img/city2027.jpg", precio: 30000, talles: ["S", "M", "L", "XL"] }
 ];
 
+// SHORTS: completá los precios y cambiá las rutas de imagen cuando quieras.
+// Los archivos de estas imágenes no venían dentro del ZIP original.
+const shorts = [
+    { nombre: "River Plate Short", categoria: "shorts", imagen: "img/rivershort.png", precio: null, talles: ["S", "M", "L", "XL"] },
+    { nombre: "Milan Short", categoria: "shorts", imagen: "img/modricshort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
+    { nombre: "Argentina Entrenamiento Short", categoria: "shorts", imagen: "img/messishort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
+    { nombre: "Juventus Short", categoria: "shorts", imagen: "img/yildizshort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
+    { nombre: "Holanda Short", categoria: "shorts", imagen: "img/gakposhort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
+    { nombre: "Bayern Munich Short", categoria: "shorts", imagen: "img/musialashort.jpg", precio: null, talles: ["S", "M", "L", "XL"] }
+];
+
 const contenedor = document.getElementById("contenedorProductos");
+const contenedorShorts = document.getElementById("contenedorShorts");
 const modal = document.getElementById("modalProducto");
 const cerrarModal = document.querySelector(".cerrar-producto");
 let productoSeleccionado = null;
 let talleSeleccionado = "";
 
-const formatoPrecio = precio => new Intl.NumberFormat("es-AR", {
-    style: "currency", currency: "ARS", maximumFractionDigits: 0
-}).format(precio);
+const formatoPrecio = precio => {
+    if (precio === null || precio === undefined || precio === "") return "Consultar precio";
+    return new Intl.NumberFormat("es-AR", {
+        style: "currency", currency: "ARS", maximumFractionDigits: 0
+    }).format(precio);
+};
+
+function crearTarjeta(producto, indice, tipo) {
+    const card = document.createElement("article");
+    card.className = "card";
+    card.innerHTML = `
+        <button class="imagen-producto" type="button" aria-label="Ver ${producto.nombre}" data-producto="${indice}" data-tipo="${tipo}">
+            <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-img" loading="lazy">
+            <span class="ver-detalle"><i class="fa-solid fa-eye"></i> Ver detalles</span>
+        </button>
+        <div class="info">
+            <span class="etiqueta">${tipo === "short" ? "SHORTS" : producto.categoria.toUpperCase()}</span>
+            <h3>${producto.nombre}</h3>
+            <p class="precio">${formatoPrecio(producto.precio)}</p>
+            <p class="talles-resumen">Talles: ${producto.talles.join(" · ")}</p>
+            <button class="btn-consultar" type="button" data-producto="${indice}" data-tipo="${tipo}">VER TALLES Y CONSULTAR <i class="fa-solid fa-arrow-right"></i></button>
+        </div>`;
+    return card;
+}
 
 function mostrarProductos(lista) {
     contenedor.innerHTML = "";
@@ -32,29 +65,21 @@ function mostrarProductos(lista) {
         contenedor.innerHTML = '<p class="sin-resultados">No encontramos camisetas con esa búsqueda.</p>';
         return;
     }
-
-    lista.forEach(producto => {
-        const indice = camisetas.indexOf(producto);
-        const card = document.createElement("article");
-        card.className = "card";
-        card.innerHTML = `
-            <button class="imagen-producto" type="button" aria-label="Ver ${producto.nombre}" data-producto="${indice}">
-                <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-img" loading="lazy">
-                <span class="ver-detalle"><i class="fa-solid fa-eye"></i> Ver detalles</span>
-            </button>
-            <div class="info">
-                <span class="etiqueta">CALIDAD PREMIUM</span>
-                <h3>${producto.nombre}</h3>
-                <p class="precio">${formatoPrecio(producto.precio)}</p>
-                <p class="talles-resumen">Talles: ${producto.talles.join(" · ")}</p>
-                <button class="btn-consultar" type="button" data-producto="${indice}">VER TALLES Y CONSULTAR <i class="fa-solid fa-arrow-right"></i></button>
-            </div>`;
-        contenedor.appendChild(card);
-    });
+    lista.forEach(producto => contenedor.appendChild(crearTarjeta(producto, camisetas.indexOf(producto), "camiseta")));
 }
 
-function abrirDetalle(indice) {
-    productoSeleccionado = camisetas[indice];
+function mostrarShorts(lista) {
+    if (!contenedorShorts) return;
+    contenedorShorts.innerHTML = "";
+    if (!lista.length) {
+        contenedorShorts.innerHTML = '<p class="sin-resultados">No encontramos shorts con esa búsqueda.</p>';
+        return;
+    }
+    lista.forEach(producto => contenedorShorts.appendChild(crearTarjeta(producto, shorts.indexOf(producto), "short")));
+}
+
+function abrirDetalle(indice, tipo = "camiseta") {
+    productoSeleccionado = tipo === "short" ? shorts[indice] : camisetas[indice];
     if (!productoSeleccionado) return;
     talleSeleccionado = productoSeleccionado.talles[0] || "";
     document.getElementById("detalleImg").src = productoSeleccionado.imagen;
@@ -87,10 +112,12 @@ function cerrarDetalle() {
     document.body.classList.remove("modal-abierto");
 }
 
-contenedor.addEventListener("click", event => {
+function manejarClickProducto(event) {
     const boton = event.target.closest("[data-producto]");
-    if (boton) abrirDetalle(Number(boton.dataset.producto));
-});
+    if (boton) abrirDetalle(Number(boton.dataset.producto), boton.dataset.tipo || "camiseta");
+}
+contenedor.addEventListener("click", manejarClickProducto);
+if (contenedorShorts) contenedorShorts.addEventListener("click", manejarClickProducto);
 
 cerrarModal.addEventListener("click", cerrarDetalle);
 modal.addEventListener("click", event => { if (event.target === modal) cerrarDetalle(); });
@@ -98,7 +125,8 @@ document.addEventListener("keydown", event => { if (event.key === "Escape") cerr
 
 document.getElementById("detalleWhatsApp").addEventListener("click", () => {
     if (!productoSeleccionado || !talleSeleccionado) return;
-    const mensaje = `¡Hola, La Popular! 👋 Quisiera consultar por ${productoSeleccionado.nombre}. Talle: ${talleSeleccionado}. Precio publicado: ${formatoPrecio(productoSeleccionado.precio)}. ¿Está disponible?`;
+    const precioMensaje = productoSeleccionado.precio == null ? "Quisiera consultar el precio" : `Precio publicado: ${formatoPrecio(productoSeleccionado.precio)}`;
+    const mensaje = `¡Hola, La Popular! 👋 Quisiera consultar por ${productoSeleccionado.nombre}. Talle: ${talleSeleccionado}. ${precioMensaje}. ¿Está disponible?`;
     window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`, "_blank", "noopener,noreferrer");
 });
 
@@ -112,7 +140,9 @@ function actualizarCatalogo() {
         const coincideCategoria = categoriaActiva === "todos" || producto.categoria === categoriaActiva;
         return coincideTexto && coincideCategoria;
     });
+    const shortsFiltrados = shorts.filter(producto => producto.nombre.toLocaleLowerCase("es").includes(texto));
     mostrarProductos(filtradas);
+    mostrarShorts(shortsFiltrados);
 }
 buscador.addEventListener("input", actualizarCatalogo);
 document.querySelectorAll(".categorias button").forEach(boton => {
@@ -131,3 +161,4 @@ window.addEventListener("scroll", () => {
 topBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
 mostrarProductos(camisetas);
+mostrarShorts(shorts);
