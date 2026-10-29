@@ -1,356 +1,133 @@
 // =========================================
-// LA POPULAR — CONFIGURACIÓN
+// CONFIGURACIÓN DE LA POPULAR
+// Editá precio y talles de cada producto según tu stock real.
 // =========================================
-
 const numeroWhatsApp = "5492645782637";
 
-// =========================================
-// CAMISETAS
-// =========================================
-
 const camisetas = [
-    { nombre: "Barcelona Edicion Especial", categoria: "europa", imagen: "img/barcelonasuplente.png" },
-    { nombre: "Chelsea T90", categoria: "europa", imagen: "img/chelseasuplente.jpg" },
-    { nombre: "Argentina Titular 2026", categoria: "selecciones", imagen: "img/messi.jpg" },
-    { nombre: "Argentina Suplente 2026", categoria: "selecciones", imagen: "img/argentinasuplente.jpg" },
-    { nombre: "Manchester City Suplente 2026", categoria: "europa", imagen: "img/citynegra.jpg" },
-    { nombre: "AC Milan 2026", categoria: "europa", imagen: "img/milan.jpg" },
-    { nombre: "Corinthians Suplente 2025", categoria: "nacional", imagen: "img/depay.jpg" },
-    { nombre: "PSG Quinta 2026", categoria: "europa", imagen: "img/psgsuplente.jpg" },
-    { nombre: "Brasil Titular 2026", categoria: "selecciones", imagen: "img/brasiltitular.jpg" },
-    { nombre: "Manchester United Titular 2026", categoria: "europa", imagen: "img/united2026.jpg" },
-    { nombre: "Liverpool Titular 2026", categoria: "europa", imagen: "img/liverpool.png" },
-    { nombre: "Palmeiras Suplente 2026", categoria: "nacional", imagen: "img/palmeiras.jpeg" },
-    { nombre: "Manchester City Titular 2026", categoria: "europa", imagen: "img/city2027.jpg" },
-    { nombre: "Barcelona Retro 2026", categoria: "retro", imagen: "img/fermin2.png" },
-    { nombre: "Racing Titular 2026", categoria: "nacional", imagen: "img/racing2026.jpg" },
-    { nombre: "Boca Titular 2026", categoria: "nacional", imagen: "img/boca2026.jpg" },
-    { nombre: "Boca 120 años Aniversario", categoria: "nacional", imagen: "img/boca120.jpg" },
-    { nombre: "River Titular 2026", categoria: "nacional", imagen: "img/rivertitular2027.jpg" },
-    { nombre: "River Suplente 2026", categoria: "nacional", imagen: "img/river2027.jpg" },
-    { nombre: "Barcelona Suplente 2026", categoria: "europa", imagen: "img/barcelonamorada.jpg" },
-    { nombre: "Barcelona Titular 2026", categoria: "europa", imagen: "img/barca2027.jpg" },
-    { nombre: "COMO Titular 2026", categoria: "europa", imagen: "img/Como.jpg" }
+    { nombre: "Barcelona Edición Especial", categoria: "europa", imagen: "img/barcelonasuplente.png", precio: 27500, talles: ["S", "M", "L", "XL"] },
+    { nombre: "Chelsea T90", categoria: "europa", imagen: "img/chelseasuplente.jpg", precio: 30000, talles: ["M", "L", "XL"] },
+    { nombre: "Argentina Titular 2026", categoria: "selecciones", imagen: "img/messi.jpg", precio: 30000, talles: ["S", "M", "L", "XL", "XXL"] },
+    { nombre: "Argentina Suplente 2026", categoria: "selecciones", imagen: "img/argentinasuplente.jpg", precio: 30000, talles: ["S", "M", "L", "XL"] },
+    { nombre: "Manchester City Suplente 2026", categoria: "europa", imagen: "img/citynegra.jpg", precio: 30000, talles: ["M", "L", "XL"] },
+    { nombre: "AC Milan 2026", categoria: "europa", imagen: "img/milan.jpg", precio: 30000, talles: ["S", "M", "L", "XL"] },
+    { nombre: "Corinthians Suplente 2025", categoria: "nacional", imagen: "img/depay.jpg", precio: 30000, talles: ["M", "L", "XL"] },
+    { nombre: "PSG Quinta 2026", categoria: "europa", imagen: "img/psgsuplente.jpg", precio: 30000, talles: ["S", "M", "L", "XL"] },
+    { nombre: "Manchester City Titular 26/27", categoria: "europa", imagen: "img/city2027.jpg", precio: 30000, talles: ["S", "M", "L", "XL"] }
 ];
 
-// =========================================
-// SHORTS
-// =========================================
+const contenedor = document.getElementById("contenedorProductos");
+const modal = document.getElementById("modalProducto");
+const cerrarModal = document.querySelector(".cerrar-producto");
+let productoSeleccionado = null;
+let talleSeleccionado = "";
 
-const shorts = [
-    { nombre: "River Plate Short", imagen: "img/rivershort.png" },
-    { nombre: "Milan Short", imagen: "img/modricshort.jpg" },
-    { nombre: "Argentina Entrenamiento Short", imagen: "img/messishort.jpg" },
-    { nombre: "Juventus Short", imagen: "img/yildizshort.jpg" },
-    { nombre: "Holanda Short", imagen: "img/gakposhort.jpg" },
-    { nombre: "Bayern Munich Short", imagen: "img/musialashort.jpg" }
-];
-
-// =========================================
-// ELEMENTOS Y ESTADO
-// =========================================
-
-const contenedorProductos = document.getElementById("contenedorProductos");
-const contenedorShorts = document.getElementById("contenedorShorts");
-const buscador = document.getElementById("searchInput");
-const botonesFiltro = document.querySelectorAll(".categorias [data-filter]");
-const topBtn = document.getElementById("topBtn");
-
-let categoriaActiva = "todos";
-let textoBusqueda = "";
-
-// =========================================
-// CREAR TARJETAS
-// =========================================
-
-function crearTarjeta(producto, tipo) {
-    const tarjeta = document.createElement("article");
-    tarjeta.className = "card";
-
-    // Imagen del producto
-    const botonImagen = document.createElement("button");
-    botonImagen.type = "button";
-    botonImagen.className = "imagen-producto";
-    botonImagen.setAttribute("aria-label", `Ampliar imagen de ${producto.nombre}`);
-
-    const imagen = document.createElement("img");
-    imagen.src = producto.imagen;
-    imagen.alt = producto.nombre;
-    imagen.className = "producto-img";
-    imagen.loading = "lazy";
-    imagen.decoding = "async";
-
-    imagen.addEventListener("error", () => {
-        tarjeta.classList.add("imagen-no-disponible");
-        imagen.alt = `No se pudo cargar la imagen de ${producto.nombre}`;
-    });
-
-    const detalle = document.createElement("span");
-    detalle.className = "ver-detalle";
-    detalle.textContent = "VER DETALLE";
-
-    botonImagen.append(imagen, detalle);
-    botonImagen.addEventListener("click", () => abrirModal(producto));
-
-    // Información
-    const info = document.createElement("div");
-    info.className = "info";
-
-    const etiqueta = document.createElement("span");
-    etiqueta.className = "etiqueta";
-    etiqueta.textContent = tipo === "short"
-        ? "SHORTS"
-        : producto.categoria.toUpperCase();
-
-    const nombre = document.createElement("h3");
-    nombre.textContent = producto.nombre;
-
-    const calidad = document.createElement("p");
-    calidad.className = "talles-resumen";
-    calidad.textContent = "Calidad premium · Consultar talles";
-
-    // Botón de consulta
-    const consultarBtn = document.createElement("button");
-    consultarBtn.type = "button";
-    consultarBtn.className = "btn-consultar";
-    consultarBtn.innerHTML =
-        '<i class="fab fa-whatsapp" aria-hidden="true"></i> CONSULTAR';
-
-    consultarBtn.addEventListener("click", () => {
-        consultar(producto.nombre, tipo);
-    });
-
-    info.append(etiqueta, nombre, calidad, consultarBtn);
-    tarjeta.append(botonImagen, info);
-
-    return tarjeta;
-}
-
-// =========================================
-// MOSTRAR CAMISETAS
-// =========================================
+const formatoPrecio = precio => new Intl.NumberFormat("es-AR", {
+    style: "currency", currency: "ARS", maximumFractionDigits: 0
+}).format(precio);
 
 function mostrarProductos(lista) {
-    if (!contenedorProductos) return;
-
-    contenedorProductos.replaceChildren();
-
-    if (lista.length === 0) {
-        const mensaje = document.createElement("p");
-        mensaje.className = "sin-resultados";
-        mensaje.textContent =
-            "No encontramos camisetas con esa búsqueda.";
-
-        contenedorProductos.appendChild(mensaje);
+    contenedor.innerHTML = "";
+    if (!lista.length) {
+        contenedor.innerHTML = '<p class="sin-resultados">No encontramos camisetas con esa búsqueda.</p>';
         return;
     }
 
-    const fragmento = document.createDocumentFragment();
-
     lista.forEach(producto => {
-        fragmento.appendChild(crearTarjeta(producto, "camiseta"));
-    });
-
-    contenedorProductos.appendChild(fragmento);
-}
-
-// =========================================
-// MOSTRAR SHORTS
-// =========================================
-
-function mostrarShorts(lista) {
-    if (!contenedorShorts) return;
-
-    contenedorShorts.replaceChildren();
-
-    if (lista.length === 0) {
-        const mensaje = document.createElement("p");
-        mensaje.className = "sin-resultados";
-        mensaje.textContent =
-            "No encontramos shorts con esa búsqueda.";
-
-        contenedorShorts.appendChild(mensaje);
-        return;
-    }
-
-    const fragmento = document.createDocumentFragment();
-
-    lista.forEach(producto => {
-        fragmento.appendChild(crearTarjeta(producto, "short"));
-    });
-
-    contenedorShorts.appendChild(fragmento);
-}
-
-// =========================================
-// BUSCADOR Y FILTROS
-// =========================================
-
-function actualizarCatalogo() {
-    const camisetasFiltradas = camisetas.filter(camiseta => {
-        const coincideTexto = camiseta.nombre
-            .toLocaleLowerCase("es")
-            .includes(textoBusqueda);
-
-        const coincideCategoria =
-            categoriaActiva === "todos" ||
-            camiseta.categoria === categoriaActiva;
-
-        return coincideTexto && coincideCategoria;
-    });
-
-    const shortsFiltrados = shorts.filter(short =>
-        short.nombre
-            .toLocaleLowerCase("es")
-            .includes(textoBusqueda)
-    );
-
-    mostrarProductos(camisetasFiltradas);
-    mostrarShorts(shortsFiltrados);
-}
-
-// Buscar mientras escribís
-if (buscador) {
-    buscador.addEventListener("input", () => {
-        textoBusqueda = buscador.value
-            .trim()
-            .toLocaleLowerCase("es");
-
-        actualizarCatalogo();
+        const indice = camisetas.indexOf(producto);
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+            <button class="imagen-producto" type="button" aria-label="Ver ${producto.nombre}" data-producto="${indice}">
+                <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-img" loading="lazy">
+                <span class="ver-detalle"><i class="fa-solid fa-eye"></i> Ver detalles</span>
+            </button>
+            <div class="info">
+                <span class="etiqueta">CALIDAD PREMIUM</span>
+                <h3>${producto.nombre}</h3>
+                <p class="precio">${formatoPrecio(producto.precio)}</p>
+                <p class="talles-resumen">Talles: ${producto.talles.join(" · ")}</p>
+                <button class="btn-consultar" type="button" data-producto="${indice}">VER TALLES Y CONSULTAR <i class="fa-solid fa-arrow-right"></i></button>
+            </div>`;
+        contenedor.appendChild(card);
     });
 }
 
-// Filtrar por categoría
-botonesFiltro.forEach(boton => {
-    boton.addEventListener("click", () => {
-        categoriaActiva = boton.dataset.filter || "todos";
-
-        botonesFiltro.forEach(btn => {
-            const activo = btn === boton;
-
-            btn.classList.toggle("active", activo);
-            btn.setAttribute("aria-pressed", String(activo));
+function abrirDetalle(indice) {
+    productoSeleccionado = camisetas[indice];
+    if (!productoSeleccionado) return;
+    talleSeleccionado = productoSeleccionado.talles[0] || "";
+    document.getElementById("detalleImg").src = productoSeleccionado.imagen;
+    document.getElementById("detalleImg").alt = productoSeleccionado.nombre;
+    document.getElementById("detalleNombre").textContent = productoSeleccionado.nombre;
+    document.getElementById("detallePrecio").textContent = formatoPrecio(productoSeleccionado.precio);
+    document.getElementById("detalleCategoria").textContent = productoSeleccionado.categoria.toUpperCase();
+    const talles = document.getElementById("detalleTalles");
+    talles.innerHTML = "";
+    productoSeleccionado.talles.forEach(talle => {
+        const boton = document.createElement("button");
+        boton.type = "button";
+        boton.className = "talle-opcion" + (talle === talleSeleccionado ? " seleccionado" : "");
+        boton.textContent = talle;
+        boton.addEventListener("click", () => {
+            talleSeleccionado = talle;
+            talles.querySelectorAll("button").forEach(b => b.classList.toggle("seleccionado", b === boton));
         });
-
-        actualizarCatalogo();
+        talles.appendChild(boton);
     });
-});
-
-// =========================================
-// CONSULTAR POR WHATSAPP
-// =========================================
-
-function consultar(nombre, tipo = "camiseta") {
-    const articulo = tipo === "short"
-        ? "el short"
-        : "la camiseta";
-
-    const mensaje =
-        `¡Hola! 👋 Quisiera consultar por ${articulo} ${nombre}. ` +
-        "¿Me pasan los talles disponibles y el precio?";
-
-    const url =
-        `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
-
-    window.open(url, "_blank", "noopener,noreferrer");
-}
-
-// =========================================
-// MODAL DE IMAGEN
-// =========================================
-
-const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modalImg");
-const cerrarModalBtn = document.querySelector(".cerrar");
-
-let elementoAntesDelModal = null;
-
-function abrirModal(producto) {
-    if (!modal || !modalImg) return;
-
-    elementoAntesDelModal = document.activeElement;
-
-    modalImg.src = producto.imagen;
-    modalImg.alt = producto.nombre;
-
-    modal.style.display = "flex";
+    document.getElementById("detalleWhatsApp").disabled = !talleSeleccionado;
     modal.classList.add("abierto");
     modal.setAttribute("aria-hidden", "false");
-
     document.body.classList.add("modal-abierto");
-
-    if (cerrarModalBtn) {
-        cerrarModalBtn.focus();
-    }
 }
 
-function cerrarModal() {
-    if (!modal || !modalImg) return;
-
-    modal.style.display = "none";
+function cerrarDetalle() {
     modal.classList.remove("abierto");
     modal.setAttribute("aria-hidden", "true");
-
     document.body.classList.remove("modal-abierto");
-
-    modalImg.src = "";
-
-    if (
-        elementoAntesDelModal &&
-        typeof elementoAntesDelModal.focus === "function"
-    ) {
-        elementoAntesDelModal.focus();
-    }
 }
 
-if (cerrarModalBtn) {
-    cerrarModalBtn.addEventListener("click", cerrarModal);
-}
-
-if (modal) {
-    modal.addEventListener("click", evento => {
-        if (evento.target === modal) {
-            cerrarModal();
-        }
-    });
-}
-
-document.addEventListener("keydown", evento => {
-    if (
-        evento.key === "Escape" &&
-        modal &&
-        modal.style.display === "flex"
-    ) {
-        cerrarModal();
-    }
+contenedor.addEventListener("click", event => {
+    const boton = event.target.closest("[data-producto]");
+    if (boton) abrirDetalle(Number(boton.dataset.producto));
 });
 
-// =========================================
-// BOTÓN VOLVER ARRIBA
-// =========================================
+cerrarModal.addEventListener("click", cerrarDetalle);
+modal.addEventListener("click", event => { if (event.target === modal) cerrarDetalle(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape") cerrarDetalle(); });
 
-function actualizarBotonArriba() {
-    if (!topBtn) return;
+document.getElementById("detalleWhatsApp").addEventListener("click", () => {
+    if (!productoSeleccionado || !talleSeleccionado) return;
+    const mensaje = `¡Hola, La Popular! 👋 Quisiera consultar por ${productoSeleccionado.nombre}. Talle: ${talleSeleccionado}. Precio publicado: ${formatoPrecio(productoSeleccionado.precio)}. ¿Está disponible?`;
+    window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`, "_blank", "noopener,noreferrer");
+});
 
+// Búsqueda y filtros combinados
+const buscador = document.getElementById("searchInput");
+let categoriaActiva = "todos";
+function actualizarCatalogo() {
+    const texto = buscador.value.trim().toLocaleLowerCase("es");
+    const filtradas = camisetas.filter(producto => {
+        const coincideTexto = producto.nombre.toLocaleLowerCase("es").includes(texto);
+        const coincideCategoria = categoriaActiva === "todos" || producto.categoria === categoriaActiva;
+        return coincideTexto && coincideCategoria;
+    });
+    mostrarProductos(filtradas);
+}
+buscador.addEventListener("input", actualizarCatalogo);
+document.querySelectorAll(".categorias button").forEach(boton => {
+    boton.addEventListener("click", () => {
+        document.querySelectorAll(".categorias button").forEach(btn => btn.classList.remove("active"));
+        boton.classList.add("active");
+        categoriaActiva = boton.dataset.filter;
+        actualizarCatalogo();
+    });
+});
+
+const topBtn = document.getElementById("topBtn");
+window.addEventListener("scroll", () => {
     topBtn.classList.toggle("visible", window.scrollY > 500);
-}
-
-window.addEventListener("scroll", actualizarBotonArriba, {
-    passive: true
 });
+topBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-if (topBtn) {
-    topBtn.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
-}
-
-// =========================================
-// INICIAR CATÁLOGO
-// =========================================
-
-actualizarCatalogo();
-actualizarBotonArriba();
+mostrarProductos(camisetas);
