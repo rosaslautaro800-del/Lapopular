@@ -6,15 +6,18 @@
 const numeroWhatsApp = "5492645782637";
 
 const camisetas = [
-    { nombre: "Bayern Munchen Suplente 26/27", categoria: "europa", imagen: "img/bayer.png", imagenes["bayern2.png"],  precio: 49990, talles: ["XL"] },
-    { nombre: "Chelsea T90", categoria: "europa", imagen: "img/chelseasuplente.jpg", precio: 30000, talles: ["M", "L", "XL"] },
-    { nombre: "Argentina Titular 2026", categoria: "selecciones", imagen: "img/messi.jpg", precio: 30000, talles: ["S", "M", "L", "XL", "XXL"] },
-    { nombre: "Argentina Suplente 2026", categoria: "selecciones", imagen: "img/argentinasuplente.jpg", precio: 30000, talles: ["S", "M", "L", "XL"] },
-    { nombre: "Manchester City Suplente 2026", categoria: "europa", imagen: "img/citynegra.jpg", precio: 30000, talles: ["M", "L", "XL"] },
-    { nombre: "AC Milan 2026", categoria: "europa", imagen: "img/milan.jpg", precio: 30000, talles: ["S", "M", "L", "XL"] },
-    { nombre: "Corinthians Suplente 2025", categoria: "nacional", imagen: "img/depay.jpg", precio: 30000, talles: ["M", "L", "XL"] },
-    { nombre: "PSG Quinta 2026", categoria: "europa", imagen: "img/psgsuplente.jpg", precio: 30000, talles: ["S", "M", "L", "XL"] },
-    { nombre: "Manchester City Titular 26/27", categoria: "europa", imagen: "img/city2027.jpg", precio: 30000, talles: ["S", "M", "L", "XL"] }
+    {
+    nombre: "Bayern Munchen Suplente 26/27",
+    categoria: "europa",
+    imagen: "img/bayer.png",
+    imagenes: [
+        "img/bayer1.png",
+        "img/bayer2.png",
+        "img/bayer3.png"
+    ],
+    precio: 49990,
+    talles: ["XL"]
+},
 ];
 
 const shorts = [
