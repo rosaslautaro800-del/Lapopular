@@ -29,6 +29,17 @@ const camisetas = [
         ],
         precio: 49990,
         talles: ["Sin Stock"]
+    },
+    {
+        nombre: "Argentina Titular 2006",
+        categoria: "seleccion", "retro"
+        imagen: "img/argp2.png",
+        imagenes: [
+            "img/argp.png",
+            "img/argp1.png"
+        ],
+        precio: 39990,
+        talles: ["Sin Stock"]
     }
 ];
 
