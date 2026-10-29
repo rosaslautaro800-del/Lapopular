@@ -736,11 +736,10 @@ if (detalleWhatsApp) {
                     productoSeleccionado.precio
                 )}`;
 
-        const mensaje =
-            `¡Hola, La Popular!Quisiera consultar por ` +
-            `${productoSeleccionado.nombre}. ` +
-            `¿Está disponible?`;
-
+const mensaje =
+    `¡Hola, La Popular! Quisiera consultar por la camiseta ` +
+    `"${productoSeleccionado.nombre}" en talle ${talleSeleccionado}, ` +
+    `¿está disponible?`;
         const url =
             `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(
                 mensaje
