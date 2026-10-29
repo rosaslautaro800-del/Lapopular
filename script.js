@@ -16,8 +16,8 @@ const camisetas = [
         "img/bayer3.png"
     ],
     precio: 49990,
-    talles: ["XL"]
-}
+    talles: ["Sin Stock"]
+},
     {
     nombre: "Boca Titular 26/27",
     categoria: "nacional",
@@ -28,8 +28,8 @@ const camisetas = [
         "img/bocati.png"
     ],
     precio: 49990,
-    talles: ["XL"]
-},
+    talles: ["Sin Stock"]
+}
 ];
 
 const shorts = [
