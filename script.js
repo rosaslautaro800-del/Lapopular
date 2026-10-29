@@ -7,29 +7,29 @@ const numeroWhatsApp = "5492645782637";
 
 const camisetas = [
     {
-    nombre: "Bayern Munchen Suplente 26/27",
-    categoria: "europa",
-    imagen: "img/bayer.png",
-    imagenes: [
-        "img/bayer1.png",
-        "img/bayer2.png",
-        "img/bayer3.png"
-    ],
-    precio: 49990,
-    talles: ["Sin Stock"]
-},
+        nombre: "Bayern Munchen Suplente 26/27",
+        categoria: "europa",
+        imagen: "img/bayer.png",
+        imagenes: [
+            "img/bayer1.png",
+            "img/bayer2.png",
+            "img/bayer3.png"
+        ],
+        precio: 49990,
+        talles: ["Sin Stock"]
+    },
     {
-    nombre: "Boca Titular 26/27",
-    categoria: "nacional",
-    imagen: "img/pareti2.png",
-    imagenes: [
-        "img/pareti1.png",
-        "img/pareti.png",
-        "img/bocati.png"
-    ],
-    precio: 49990,
-    talles: ["Sin Stock"]
-}
+        nombre: "Boca Titular 26/27",
+        categoria: "nacional",
+        imagen: "img/pareti2.png",
+        imagenes: [
+            "img/pareti1.png",
+            "img/pareti.png",
+            "img/bocati.png"
+        ],
+        precio: 49990,
+        talles: ["Sin Stock"]
+    }
 ];
 
 const shorts = [
@@ -71,6 +71,46 @@ let elementoAnterior = null;
 let inicioDeslizamientoX = 0;
 let inicioDeslizamientoY = 0;
 
+// Caché de imágenes precargadas.
+const cacheImagenes = new Map();
+
+/* =========================================
+   PRECARGA DE IMÁGENES
+========================================= */
+
+function precargarImagen(ruta) {
+    if (!ruta) return Promise.resolve(null);
+
+    if (cacheImagenes.has(ruta)) {
+        return cacheImagenes.get(ruta);
+    }
+
+    const promesa = new Promise(resolve => {
+        const imagen = new Image();
+
+        imagen.decoding = "async";
+
+        imagen.onload = () => resolve(imagen);
+        imagen.onerror = () => resolve(null);
+
+        imagen.src = ruta;
+
+        // También contempla imágenes que ya estaban en caché.
+        if (imagen.complete && imagen.naturalWidth > 0) {
+            resolve(imagen);
+        }
+    });
+
+    cacheImagenes.set(ruta, promesa);
+    return promesa;
+}
+
+function precargarGaleria(rutas) {
+    rutas.forEach(ruta => {
+        precargarImagen(ruta);
+    });
+}
+
 /* FORMATO DE PRECIOS */
 
 const formatoPrecio = precio => {
@@ -92,17 +132,19 @@ function obtenerImagenes(producto) {
         ? producto.imagenes
         : [];
 
-    // La imagen principal se incluye automáticamente.
     return [...new Set([producto.imagen, ...lista].filter(Boolean))];
 }
 
-/* CREAR TARJETAS */
+/* =========================================
+   CREAR TARJETAS
+========================================= */
 
 function crearTarjeta(producto, indice, tipo) {
     const card = document.createElement("article");
     card.className = "card";
 
     const imagenes = obtenerImagenes(producto);
+
     const tipoEtiqueta = tipo === "short"
         ? "SHORTS"
         : producto.categoria.toUpperCase();
@@ -119,7 +161,8 @@ function crearTarjeta(producto, indice, tipo) {
                 src="${producto.imagen}"
                 alt="${producto.nombre}"
                 class="producto-img"
-                loading="lazy">
+                loading="lazy"
+                decoding="async">
 
             <span class="ver-detalle">
                 <i class="fa-solid fa-eye" aria-hidden="true"></i>
@@ -131,6 +174,7 @@ function crearTarjeta(producto, indice, tipo) {
             <span class="etiqueta">${tipoEtiqueta}</span>
             <h3>${producto.nombre}</h3>
             <p class="precio">${formatoPrecio(producto.precio)}</p>
+
             <p class="talles-resumen">
                 Talles: ${producto.talles.join(" · ")}
             </p>
@@ -146,7 +190,6 @@ function crearTarjeta(producto, indice, tipo) {
         </div>
     `;
 
-    // Si hay más fotos, indicarlo al pasar el cursor.
     if (imagenes.length > 1) {
         card.querySelector(".ver-detalle").innerHTML =
             '<i class="fa-solid fa-images" aria-hidden="true"></i> Ver fotos';
@@ -165,7 +208,9 @@ function mostrarProductos(lista) {
     if (!lista.length) {
         const mensaje = document.createElement("p");
         mensaje.className = "sin-resultados";
-        mensaje.textContent = "No encontramos camisetas con esa búsqueda.";
+        mensaje.textContent =
+            "No encontramos camisetas con esa búsqueda.";
+
         contenedor.appendChild(mensaje);
         return;
     }
@@ -174,7 +219,11 @@ function mostrarProductos(lista) {
 
     lista.forEach(producto => {
         fragmento.appendChild(
-            crearTarjeta(producto, camisetas.indexOf(producto), "camiseta")
+            crearTarjeta(
+                producto,
+                camisetas.indexOf(producto),
+                "camiseta"
+            )
         );
     });
 
@@ -191,7 +240,9 @@ function mostrarShorts(lista) {
     if (!lista.length) {
         const mensaje = document.createElement("p");
         mensaje.className = "sin-resultados";
-        mensaje.textContent = "No encontramos shorts con esa búsqueda.";
+        mensaje.textContent =
+            "No encontramos shorts con esa búsqueda.";
+
         contenedorShorts.appendChild(mensaje);
         return;
     }
@@ -200,7 +251,11 @@ function mostrarShorts(lista) {
 
     lista.forEach(producto => {
         fragmento.appendChild(
-            crearTarjeta(producto, shorts.indexOf(producto), "short")
+            crearTarjeta(
+                producto,
+                shorts.indexOf(producto),
+                "short"
+            )
         );
     });
 
@@ -211,7 +266,6 @@ function mostrarShorts(lista) {
    CARRUSEL DE FOTOS
 ========================================= */
 
-
 function actualizarGaleria() {
     if (!productoSeleccionado || !detalleImg) return;
 
@@ -221,17 +275,25 @@ function actualizarGaleria() {
     indiceImagen = (indiceImagen + total) % total;
 
     const nuevaRuta = imagenesProducto[indiceImagen];
-
-    // Cambiar el contador y los indicadores inmediatamente.
     const hayVariasFotos = total > 1;
 
-    if (fotoAnterior) fotoAnterior.hidden = !hayVariasFotos;
-    if (fotoSiguiente) fotoSiguiente.hidden = !hayVariasFotos;
+    // Actualizar controles inmediatamente.
+
+    if (fotoAnterior) {
+        fotoAnterior.hidden = !hayVariasFotos;
+    }
+
+    if (fotoSiguiente) {
+        fotoSiguiente.hidden = !hayVariasFotos;
+    }
 
     if (contadorFotos) {
         contadorFotos.hidden = !hayVariasFotos;
-        contadorFotos.textContent = `${indiceImagen + 1} / ${total}`;
+        contadorFotos.textContent =
+            `${indiceImagen + 1} / ${total}`;
     }
+
+    // Actualizar indicadores.
 
     if (indicadoresFotos) {
         indicadoresFotos.replaceChildren();
@@ -242,8 +304,17 @@ function actualizarGaleria() {
 
                 punto.type = "button";
                 punto.className = "galeria-punto";
-                punto.classList.toggle("activo", indice === indiceImagen);
-                punto.setAttribute("aria-label", `Ver foto ${indice + 1}`);
+
+                punto.classList.toggle(
+                    "activo",
+                    indice === indiceImagen
+                );
+
+                punto.setAttribute(
+                    "aria-label",
+                    `Ver foto ${indice + 1}`
+                );
+
                 punto.setAttribute(
                     "aria-current",
                     indice === indiceImagen ? "true" : "false"
@@ -259,18 +330,46 @@ function actualizarGaleria() {
         }
     }
 
-    // Mostrar la imagen cuando esté cargada.
-    if (detalleImg.dataset.rutaActual === nuevaRuta && detalleImg.complete) {
-        return;
-    }
-
     detalleImg.alt =
         `${productoSeleccionado.nombre} — Foto ${indiceImagen + 1}`;
 
-    detalleImg.src = nuevaRuta;
-    detalleImg.dataset.rutaActual = nuevaRuta;
+    // Si ya está mostrando esta foto, no volver a cargarla.
+    if (
+        detalleImg.dataset.rutaActual === nuevaRuta &&
+        detalleImg.complete &&
+        detalleImg.naturalWidth > 0
+    ) {
+        return;
+    }
+
+    // Mostrar la nueva foto apenas esté disponible.
+    precargarImagen(nuevaRuta).then(imagenCargada => {
+        // Evitar mostrar una foto vieja si el usuario siguió deslizando.
+        if (
+            !imagenCargada ||
+            !productoSeleccionado ||
+            imagenesProducto[indiceImagen] !== nuevaRuta
+        ) {
+            return;
+        }
+
+        if (detalleImg.src !== imagenCargada.src) {
+            detalleImg.src = imagenCargada.src;
+        }
+
+        detalleImg.dataset.rutaActual = nuevaRuta;
+    });
 }
 
+function cambiarImagen(direccion) {
+    if (imagenesProducto.length <= 1) return;
+
+    indiceImagen =
+        (indiceImagen + direccion + imagenesProducto.length) %
+        imagenesProducto.length;
+
+    actualizarGaleria();
+}
 
 /* ABRIR FICHA DEL PRODUCTO */
 
@@ -287,42 +386,82 @@ function abrirDetalle(indice, tipo = "camiseta") {
     imagenesProducto = obtenerImagenes(productoSeleccionado);
     indiceImagen = 0;
 
+    // Precargar las fotos en segundo plano.
+    precargarGaleria(imagenesProducto);
+
+    if (detalleImg) {
+        detalleImg.dataset.rutaActual = "";
+    }
+
     actualizarGaleria();
 
-    detalleNombre.textContent = productoSeleccionado.nombre;
-    detallePrecio.textContent = formatoPrecio(productoSeleccionado.precio);
-    detalleCategoria.textContent =
-        tipo === "short"
-            ? "SHORTS"
-            : productoSeleccionado.categoria.toUpperCase();
+    if (detalleNombre) {
+        detalleNombre.textContent = productoSeleccionado.nombre;
+    }
 
-    detalleTalles.replaceChildren();
+    if (detallePrecio) {
+        detallePrecio.textContent =
+            formatoPrecio(productoSeleccionado.precio);
+    }
 
-    productoSeleccionado.talles.forEach(talle => {
-        const boton = document.createElement("button");
+    if (detalleCategoria) {
+        detalleCategoria.textContent =
+            tipo === "short"
+                ? "SHORTS"
+                : productoSeleccionado.categoria.toUpperCase();
+    }
 
-        boton.type = "button";
-        boton.className = "talle-opcion";
-        boton.textContent = talle;
-        boton.classList.toggle("seleccionado", talle === talleSeleccionado);
-        boton.setAttribute("aria-pressed", String(talle === talleSeleccionado));
+    if (detalleTalles) {
+        detalleTalles.replaceChildren();
 
-        boton.addEventListener("click", () => {
-            talleSeleccionado = talle;
+        productoSeleccionado.talles.forEach(talle => {
+            const boton = document.createElement("button");
 
-            detalleTalles.querySelectorAll(".talle-opcion").forEach(opcion => {
-                const seleccionado = opcion === boton;
-                opcion.classList.toggle("seleccionado", seleccionado);
-                opcion.setAttribute("aria-pressed", String(seleccionado));
+            boton.type = "button";
+            boton.className = "talle-opcion";
+            boton.textContent = talle;
+
+            boton.classList.toggle(
+                "seleccionado",
+                talle === talleSeleccionado
+            );
+
+            boton.setAttribute(
+                "aria-pressed",
+                String(talle === talleSeleccionado)
+            );
+
+            boton.addEventListener("click", () => {
+                talleSeleccionado = talle;
+
+                detalleTalles
+                    .querySelectorAll(".talle-opcion")
+                    .forEach(opcion => {
+                        const seleccionado = opcion === boton;
+
+                        opcion.classList.toggle(
+                            "seleccionado",
+                            seleccionado
+                        );
+
+                        opcion.setAttribute(
+                            "aria-pressed",
+                            String(seleccionado)
+                        );
+                    });
+
+                if (detalleWhatsApp) {
+                    detalleWhatsApp.disabled = !talleSeleccionado;
+                }
             });
 
-            detalleWhatsApp.disabled = !talleSeleccionado;
+            detalleTalles.appendChild(boton);
         });
+    }
 
-        detalleTalles.appendChild(boton);
-    });
-
-    detalleWhatsApp.disabled = !talleSeleccionado;
+    if (detalleWhatsApp) {
+        detalleWhatsApp.disabled = !talleSeleccionado;
+    }
 
     modal.classList.add("abierto");
     modal.setAttribute("aria-hidden", "false");
@@ -340,7 +479,10 @@ function cerrarDetalle() {
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-abierto");
 
-    if (elementoAnterior && typeof elementoAnterior.focus === "function") {
+    if (
+        elementoAnterior &&
+        typeof elementoAnterior.focus === "function"
+    ) {
         elementoAnterior.focus();
     }
 }
@@ -369,11 +511,15 @@ if (contenedorShorts) {
 /* CONTROLES DE LA GALERÍA */
 
 if (fotoAnterior) {
-    fotoAnterior.addEventListener("click", () => cambiarImagen(-1));
+    fotoAnterior.addEventListener("click", () => {
+        cambiarImagen(-1);
+    });
 }
 
 if (fotoSiguiente) {
-    fotoSiguiente.addEventListener("click", () => cambiarImagen(1));
+    fotoSiguiente.addEventListener("click", () => {
+        cambiarImagen(1);
+    });
 }
 
 /* DESLIZAR CON EL DEDO EN CELULARES */
@@ -381,19 +527,24 @@ if (fotoSiguiente) {
 if (galeria) {
     galeria.addEventListener("touchstart", evento => {
         const toque = evento.changedTouches[0];
+
         inicioDeslizamientoX = toque.clientX;
         inicioDeslizamientoY = toque.clientY;
     }, { passive: true });
 
     galeria.addEventListener("touchend", evento => {
         const toque = evento.changedTouches[0];
-        const diferenciaX = toque.clientX - inicioDeslizamientoX;
-        const diferenciaY = toque.clientY - inicioDeslizamientoY;
 
-        // Solo cambia la foto si el movimiento fue principalmente horizontal.
+        const diferenciaX =
+            toque.clientX - inicioDeslizamientoX;
+
+        const diferenciaY =
+            toque.clientY - inicioDeslizamientoY;
+
         if (
             Math.abs(diferenciaX) > 45 &&
-            Math.abs(diferenciaX) > Math.abs(diferenciaY) * 1.2
+            Math.abs(diferenciaX) >
+                Math.abs(diferenciaY) * 1.2
         ) {
             cambiarImagen(diferenciaX < 0 ? 1 : -1);
         }
@@ -405,9 +556,17 @@ if (galeria) {
 document.addEventListener("keydown", evento => {
     if (!modal || !modal.classList.contains("abierto")) return;
 
-    if (evento.key === "Escape") cerrarDetalle();
-    if (evento.key === "ArrowLeft") cambiarImagen(-1);
-    if (evento.key === "ArrowRight") cambiarImagen(1);
+    if (evento.key === "Escape") {
+        cerrarDetalle();
+    }
+
+    if (evento.key === "ArrowLeft") {
+        cambiarImagen(-1);
+    }
+
+    if (evento.key === "ArrowRight") {
+        cambiarImagen(1);
+    }
 });
 
 /* CERRAR CON LA X O TOCANDO FUERA DE LA FICHA */
@@ -418,7 +577,9 @@ if (cerrarModal) {
 
 if (modal) {
     modal.addEventListener("click", evento => {
-        if (evento.target === modal) cerrarDetalle();
+        if (evento.target === modal) {
+            cerrarDetalle();
+        }
     });
 }
 
@@ -428,17 +589,23 @@ if (detalleWhatsApp) {
     detalleWhatsApp.addEventListener("click", () => {
         if (!productoSeleccionado || !talleSeleccionado) return;
 
-        const precioMensaje = productoSeleccionado.precio == null
-            ? "Quisiera consultar el precio"
-            : `Precio publicado: ${formatoPrecio(productoSeleccionado.precio)}`;
+        const precioMensaje =
+            productoSeleccionado.precio == null
+                ? "Quisiera consultar el precio"
+                : `Precio publicado: ${formatoPrecio(
+                    productoSeleccionado.precio
+                )}`;
 
         const mensaje =
             `¡Hola, La Popular! 👋 Quisiera consultar por ` +
-            `${productoSeleccionado.nombre}. Talle: ${talleSeleccionado}. ` +
+            `${productoSeleccionado.nombre}. ` +
+            `Talle: ${talleSeleccionado}. ` +
             `${precioMensaje}. ¿Está disponible?`;
 
         const url =
-            `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+            `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(
+                mensaje
+            )}`;
 
         window.open(url, "_blank", "noopener,noreferrer");
     });
@@ -497,14 +664,24 @@ const topBtn = document.getElementById("topBtn");
 function actualizarBotonArriba() {
     if (!topBtn) return;
 
-    topBtn.classList.toggle("visible", window.scrollY > 500);
+    topBtn.classList.toggle(
+        "visible",
+        window.scrollY > 500
+    );
 }
 
-window.addEventListener("scroll", actualizarBotonArriba, { passive: true });
+window.addEventListener(
+    "scroll",
+    actualizarBotonArriba,
+    { passive: true }
+);
 
 if (topBtn) {
     topBtn.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     });
 }
 
