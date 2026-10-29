@@ -66,7 +66,7 @@ const camisetas = [
     {
         nombre: "Argentina Suplente 26/27",
         categoria: "selecciones",
-        imagen: "img/arg.pnh",
+        imagen: "img/arg.png",
         imagenes: [
             "img/arg1.png",
             "img/arg2.png"
@@ -103,7 +103,7 @@ const camisetas = [
         imagenes: [
             "img/riiver3.png",
             "img/riiver1.png",
-            "img/riiver2.png
+            "img/riiver2.png"
                    ],
         precio: 49990,
         talles: ["Sin Stock"]
@@ -121,7 +121,7 @@ const camisetas = [
      },
     {
         nombre: "U.S.A Titular 26/27",
-        categoria: "Selecciones",
+        categoria: "selecciones",
         imagen: "img/usa.png",
         imagenes: [
             "img/usa2.png",
@@ -132,7 +132,7 @@ const camisetas = [
    }, 
    {
     nombre: "Liverpool 93/94",
-        categoria: "Retro",
+        categoria: "retro",
         imagen: "img/liverpool2.png",
         imagenes: [
             "img/liverpool.png",
