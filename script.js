@@ -6,7 +6,7 @@
 const numeroWhatsApp = "5492645782637";
 
 const camisetas = [
-    { nombre: "Bayern Munchen Suplente 26/27", categoria: "europa", imagen: "img/bayer.png", bayern2.png  precio: 49990, talles: ["XL"] },
+    { nombre: "Bayern Munchen Suplente 26/27", categoria: "europa", imagen: "img/bayer.png", [imagenes/"bayer.png" , "bayern2.png"]  precio: 49990, talles: ["XL"] },
     { nombre: "Chelsea T90", categoria: "europa", imagen: "img/chelseasuplente.jpg", precio: 30000, talles: ["M", "L", "XL"] },
     { nombre: "Argentina Titular 2026", categoria: "selecciones", imagen: "img/messi.jpg", precio: 30000, talles: ["S", "M", "L", "XL", "XXL"] },
     { nombre: "Argentina Suplente 2026", categoria: "selecciones", imagen: "img/argentinasuplente.jpg", precio: 30000, talles: ["S", "M", "L", "XL"] },
