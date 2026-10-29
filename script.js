@@ -155,11 +155,30 @@ const shorts = [
             "img/milanshort.png" ,
             "img/milanshort1.png"
         ],
-     precio: 41990, talles: ["XL"] },
-    { nombre: "Argentina Entrenamiento Short", categoria: "shorts", imagen: "img/messishort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
-    { nombre: "Juventus Short", categoria: "shorts", imagen: "img/yildizshort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
-    { nombre: "Holanda Short", categoria: "shorts", imagen: "img/gakposhort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
-    { nombre: "Bayern Munich Short", categoria: "shorts", imagen: "img/bayern.png", precio: 39990, talles: ["Sin Stock"] }
+     precio: 41990, talles: ["Sin Stock"] },
+    { nombre: "Argentina Entrenamiento Short", categoria: "shorts", imagen: "img/argshort3.png", imagenes: [
+       "img/argshort2.png",
+       "img/argshort1.png",
+       "img/short.png"
+       ],
+       precio: 41990, talles: ["Sin Stock"] },
+    { nombre: "Juventus Short", categoria: "shorts", imagen: "img/juventus3.png", imagenes: [
+       "img/juventus2.png",
+       "img/juventus1.png",
+       "img/bayern3.png",
+       "img/juventus.png"
+       ],
+       precio: 41990, talles: ["Sin Stock"] },
+    { nombre: "Holanda Short", categoria: "shorts", imagen: "img/holandashort.png", imagenes: [
+       "img/holandashort3.png",
+       "img/holandashort4.png"
+        ],
+       precio: 41990, talles: ["Sin Stock"] },
+    { nombre: "Bayern Munich Short", categoria: "shorts", imagen: "img/bayern.png", imagenes: [
+       "img/bayern1.png",
+       "img/bayern2.png"
+        ],
+     precio: 39990, talles: ["Sin Stock"] }
 ];
 
 /* ELEMENTOS HTML */
