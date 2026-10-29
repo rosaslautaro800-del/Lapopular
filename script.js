@@ -7,7 +7,7 @@ const numeroWhatsApp = "5492645782637";
 
 const camisetas = [
     {
-        nombre: "Bayern Munchen Suplente 26/27",
+        nombre: "Bayern Munchen Suplente 26/27 Olise",
         categoria: "europa",
         imagen: "img/bayer.png",
         imagenes: [
@@ -19,7 +19,7 @@ const camisetas = [
         talles: ["Sin Stock"]
     },
     {
-        nombre: "Boca Titular 26/27",
+        nombre: "Boca Titular Manga Largas Paredes 26/27",
         categoria: "nacional",
         imagen: "img/pareti2.png",
         imagenes: [
@@ -40,7 +40,107 @@ const camisetas = [
         ],
         precio: 39990,
         talles: ["Sin Stock"]
-    }
+    },
+    {
+        nombre: "Boca Titular Manga Largas Flores 26/27",
+        categoria: "nacional",
+        imagen: "img/pareti2.png",
+        imagenes: [
+            "img/pareti1.png",
+            "img/flores5.png"
+                   ],
+        precio: 49990,
+        talles: ["Sin Stock"]
+   },
+    {
+        nombre: "River Aniversario 125 Años",
+        categoria: "nacional",
+        imagen: "img/aniv2.png",
+        imagenes: [
+            "img/aniv1.png",
+            "img/aniv.png"
+                   ],
+        precio: 39990,
+        talles: ["Sin Stock"]
+   },
+    {
+        nombre: "Argentina Suplente 26/27",
+        categoria: "selecciones",
+        imagen: "img/arg.pnh",
+        imagenes: [
+            "img/arg1.png",
+            "img/arg2.png"
+                   ],
+        precio: 39990,
+        talles: ["Sin Stock"]
+      },
+    {
+        nombre: "Barcelona Retro 26/27",
+        categoria: "retro",
+        imagen: "img/barcaretro2.png",
+        imagenes: [
+            "img/barcaretro.png",
+            "img/barcaretro1.png"
+                   ],
+        precio: 39990,
+        talles: ["Sin Stock"]
+      },
+    {
+        nombre: "Racing Titular 26/27",
+        categoria: "nacional",
+        imagen: "img/racing2.png",
+        imagenes: [
+            "img/racing1.png",
+            "img/racing.png"  
+                   ],
+        precio: 39990,
+        talles: ["Sin Stock"]
+     },
+    {
+        nombre: "River Titular Manga Largas Andrada 26/27",
+        categoria: "nacional",
+        imagen: "img/riiver4.png",
+        imagenes: [
+            "img/riiver3.png",
+            "img/riiver1.png",
+            "img/riiver2.png
+                   ],
+        precio: 49990,
+        talles: ["Sin Stock"]
+      },
+    {
+        nombre: "River Titular 26/27",
+        categoria: "nacional",
+        imagen: "img/riverrr.png",
+        imagenes: [
+            "img/riiver3.png",
+            "img/riverrr2.png"    
+                   ],
+        precio: 39990,
+        talles: ["Sin Stock"]
+     },
+    {
+        nombre: "U.S.A Titular 26/27",
+        categoria: "Selecciones",
+        imagen: "img/usa.png",
+        imagenes: [
+            "img/usa2.png",
+            "img/usa1.png"   
+                   ],
+        precio: 39990,
+        talles: ["Sin Stock"]
+   }, 
+   {
+    nombre: "Liverpool 93/94",
+        categoria: "Retro",
+        imagen: "img/liverpool2.png",
+        imagenes: [
+            "img/liverpool.png",
+            "img/liverpool1.png"   
+                   ],
+        precio: 39990,
+        talles: ["Sin Stock"]
+         }  
 ];
 
 const shorts = [
