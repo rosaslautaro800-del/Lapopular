@@ -17,6 +17,18 @@ const camisetas = [
     ],
     precio: 49990,
     talles: ["XL"]
+}
+    {
+    nombre: "Boca Titular 26/27",
+    categoria: "nacional",
+    imagen: "img/pareti2.png",
+    imagenes: [
+        "img/pareti1.png",
+        "img/pareti.png",
+        "img/bocati.png"
+    ],
+    precio: 49990,
+    talles: ["XL"]
 },
 ];
 
