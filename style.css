@@ -976,3 +976,146 @@ footer p {
         font-size: 36px;
     }
 }
+
+/* =========================================
+   LA POPULAR — GALERÍA DE FOTOS
+========================================= */
+
+.detalle-imagen {
+    position: relative;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+/* Imagen de la ficha */
+.detalle-imagen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Flechas para cambiar de foto */
+.galeria-flecha {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(11, 31, 58, 0.12);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.94);
+    color: #0B1F3A;
+
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+
+    transition: background 0.2s, color 0.2s;
+}
+
+.galeria-flecha:hover {
+    background: #0B1F3A;
+    color: #ffffff;
+}
+
+.galeria-flecha.anterior {
+    left: 12px;
+}
+
+.galeria-flecha.siguiente {
+    right: 12px;
+}
+
+/* Contador: 1 / 3 */
+.galeria-contador {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+
+    padding: 6px 10px;
+    border-radius: 20px;
+
+    background: rgba(11, 31, 58, 0.85);
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Indicadores inferiores */
+.galeria-indicadores {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Cada punto */
+.galeria-punto {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #b8c1ce;
+    cursor: pointer;
+
+    transition: background 0.2s, transform 0.2s;
+}
+
+.galeria-punto.activo {
+    background: #0B1F3A;
+    transform: scale(1.3);
+}
+
+/* Ocultar controles cuando hay una sola foto */
+.galeria-flecha[hidden],
+.galeria-contador[hidden],
+.galeria-indicadores:empty {
+    display: none;
+}
+
+/* Ajustes para celulares */
+@media (max-width: 600px) {
+    .galeria-flecha {
+        width: 34px;
+        height: 34px;
+    }
+
+    .galeria-flecha.anterior {
+        left: 8px;
+    }
+
+    .galeria-flecha.siguiente {
+        right: 8px;
+    }
+
+    .galeria-contador {
+        top: 8px;
+        right: 8px;
+        font-size: 11px;
+    }
+
+    .galeria-indicadores {
+        bottom: 10px;
+    }
+}
