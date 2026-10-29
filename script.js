@@ -48,8 +48,9 @@ const shorts = [
     { nombre: "Milan Short", categoria: "shorts", imagen: "img/milanshort3.png", imagenes: [
             "img/milanshort2.png",
             "img/milanshort.png" ,
-            "img/milanshort1.png
-        ], precio: 41,990, talles: ["S", "M", "L", "XL"] },
+            "img/milanshort1.png"
+        ],
+     precio: 41990, talles: ["XL"] },
     { nombre: "Argentina Entrenamiento Short", categoria: "shorts", imagen: "img/messishort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
     { nombre: "Juventus Short", categoria: "shorts", imagen: "img/yildizshort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
     { nombre: "Holanda Short", categoria: "shorts", imagen: "img/gakposhort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
