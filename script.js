@@ -32,7 +32,7 @@ const camisetas = [
     },
     {
         nombre: "Argentina Titular 2006",
-        categoria: "seleccion", "retro"
+        categoria: "retro",
         imagen: "img/argp2.png",
         imagenes: [
             "img/argp.png",
