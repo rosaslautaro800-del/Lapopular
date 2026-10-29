@@ -38,7 +38,7 @@ const shorts = [
     { nombre: "Argentina Entrenamiento Short", categoria: "shorts", imagen: "img/messishort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
     { nombre: "Juventus Short", categoria: "shorts", imagen: "img/yildizshort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
     { nombre: "Holanda Short", categoria: "shorts", imagen: "img/gakposhort.jpg", precio: null, talles: ["S", "M", "L", "XL"] },
-    { nombre: "Bayern Munich Short", categoria: "shorts", imagen: "img/bayern.png", precio: 39990, talles: ["XL"] }
+    { nombre: "Bayern Munich Short", categoria: "shorts", imagen: "img/bayern.png", precio: 39990, talles: ["Sin Stock"] }
 ];
 
 /* ELEMENTOS HTML */
