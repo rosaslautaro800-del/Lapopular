@@ -9,7 +9,7 @@ const camisetas = [
     {
         nombre: "Bayern Munchen Suplente 26/27 Olise",
         categoria: "europa",
-        imagen: "img/bayer.png",
+        imagen: "img/bayer.jpg",
         imagenes: [
             "img/bayer1.jpg",
             "img/bayer2.jpg",
