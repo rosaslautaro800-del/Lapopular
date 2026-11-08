@@ -11,9 +11,9 @@ const camisetas = [
         categoria: "europa",
         imagen: "img/bayer.png",
         imagenes: [
-            "img/bayer1.png",
-            "img/bayer2.png",
-            "img/bayer3.png"
+            "img/bayer1.jpg",
+            "img/bayer2.jpg",
+            "img/bayer3.jpg"
         ],
         precio: 49990,
         talles: ["Sin Stock"]
@@ -21,11 +21,11 @@ const camisetas = [
     {
         nombre: "Boca Titular Manga Largas Paredes 26/27",
         categoria: "nacional",
-        imagen: "img/pareti2.png",
+        imagen: "img/pareti2.jpg",
         imagenes: [
-            "img/pareti1.png",
-            "img/pareti.png",
-            "img/bocati.png"
+            "img/pareti1.jpg",
+            "img/pareti.jpg",
+            "img/bocati.jpg"
         ],
         precio: 49990,
         talles: ["Sin Stock"]
@@ -33,10 +33,10 @@ const camisetas = [
     {
         nombre: "Argentina Titular 2006",
         categoria: "retro",
-        imagen: "img/argp2.png",
+        imagen: "img/argp2.jpg",
         imagenes: [
-            "img/argp.png",
-            "img/argp1.png"
+            "img/argp.jpg",
+            "img/argp1.jpg"
         ],
         precio: 39990,
         talles: ["Sin Stock"]
@@ -44,10 +44,10 @@ const camisetas = [
     {
         nombre: "Boca Titular Manga Largas Flores 26/27",
         categoria: "nacional",
-        imagen: "img/pareti2.png",
+        imagen: "img/pareti2.jpg",
         imagenes: [
-            "img/pareti1.png",
-            "img/flores5.png"
+            "img/pareti1.jpg",
+            "img/flores5.jpg"
                    ],
         precio: 49990,
         talles: ["XL","L"]
@@ -55,10 +55,10 @@ const camisetas = [
     {
         nombre: "River Aniversario 125 Años",
         categoria: "nacional",
-        imagen: "img/aniv2.png",
+        imagen: "img/aniv2.jpg",
         imagenes: [
-            "img/aniv1.png",
-            "img/aniv.png"
+            "img/aniv1.jpg",
+            "img/aniv.jpg"
                    ],
         precio: 39990,
         talles: ["Sin Stock"]
@@ -66,10 +66,10 @@ const camisetas = [
     {
         nombre: "Argentina Suplente 26/27",
         categoria: "selecciones",
-        imagen: "img/arg.png",
+        imagen: "img/arg.jpg",
         imagenes: [
-            "img/arg1.png",
-            "img/arg2.png"
+            "img/arg1.jpg",
+            "img/arg2.jpg"
                    ],
         precio: 39990,
         talles: ["Sin Stock"]
@@ -77,10 +77,10 @@ const camisetas = [
     {
         nombre: "Barcelona Retro 26/27",
         categoria: "retro",
-        imagen: "img/barcaretro2.png",
+        imagen: "img/barcaretro2.jpg",
         imagenes: [
-            "img/barcaretro.png",
-            "img/barcaretro1.png"
+            "img/barcaretro.jpg",
+            "img/barcaretro1.jpg"
                    ],
         precio: 39990,
         talles: ["Sin Stock"]
@@ -88,10 +88,10 @@ const camisetas = [
     {
         nombre: "Racing Titular 26/27",
         categoria: "nacional",
-        imagen: "img/racing2.png",
+        imagen: "img/racing2.jpg",
         imagenes: [
-            "img/racing1.png",
-            "img/racing.png"  
+            "img/racing1.jpg",
+            "img/racing.jpg"  
                    ],
         precio: 39990,
         talles: ["Sin Stock"]
@@ -99,11 +99,11 @@ const camisetas = [
     {
     nombre: "River Titular Manga Largas Andrada 26/27",
     categoria: "nacional",
-    imagen: "img/riiver4.png",
+    imagen: "img/riiver4.jpg",
     imagenes: [
-        "img/riiver3.png",
-        "img/riiver1.png",
-        "img/riiver2.png"
+        "img/riiver3.jpg",
+        "img/riiver1.jpg",
+        "img/riiver2.jpg"
     ],
     precio: 49990,
     talles: ["Sin Stock"]
@@ -111,10 +111,10 @@ const camisetas = [
     {
         nombre: "River Titular 26/27",
         categoria: "nacional",
-        imagen: "img/riverrr.png",
+        imagen: "img/riverrr.jpg",
         imagenes: [
-            "img/riiver3.png",
-            "img/riverrr2.png"    
+            "img/riiver3.jpg",
+            "img/riverrr2.jpg"    
                    ],
         precio: 39990,
         talles: ["Sin Stock"]
@@ -122,10 +122,10 @@ const camisetas = [
     {
         nombre: "U.S.A Titular 26/27",
         categoria: "selecciones",
-        imagen: "img/usa.png",
+        imagen: "img/usa.jpg",
         imagenes: [
-            "img/usa2.png",
-            "img/usa1.png"   
+            "img/usa2.jpg",
+            "img/usa1.jpg"   
                    ],
         precio: 39990,
         talles: ["Sin Stock"]
@@ -133,10 +133,10 @@ const camisetas = [
    {
     nombre: "Liverpool 93/94",
         categoria: "retro",
-        imagen: "img/liverpool2.png",
+        imagen: "img/liverpool2.jpg",
         imagenes: [
-            "img/liverpool.png",
-            "img/liverpool1.png"   
+            "img/liverpool.jpg",
+            "img/liverpool1.jpg"   
                    ],
         precio: 39990,
         talles: ["Sin Stock"]
@@ -144,39 +144,39 @@ const camisetas = [
 ];
 
 const shorts = [
-    { nombre: "River Plate Short", categoria: "shorts", imagen: "img/shortriver.png", imagenes: [
-       "img/shortriver3.png",
-       "img/rivershort1.png",
-       "img/riversort1.png"
+    { nombre: "River Plate Short", categoria: "shorts", imagen: "img/shortriver.jpg", imagenes: [
+       "img/shortriver3.jpg",
+       "img/rivershort1.jpg",
+       "img/riversort1.jpg"
        ],
        precio: 41990, talles: ["Sin Stock"] },
-    { nombre: "Milan Short", categoria: "shorts", imagen: "img/milanshort3.png", imagenes: [
-            "img/milanshort2.png",
-            "img/milanshort.png" ,
-            "img/milanshort1.png"
+    { nombre: "Milan Short", categoria: "shorts", imagen: "img/milanshort3.jpg", imagenes: [
+            "img/milanshort2.jpg",
+            "img/milanshort.jpg" ,
+            "img/milanshort1.jpg"
         ],
      precio: 41990, talles: ["Sin Stock"] },
-    { nombre: "Argentina Entrenamiento Short", categoria: "shorts", imagen: "img/argshort3.png", imagenes: [
-       "img/argshort2.png",
-       "img/argshort1.png",
-       "img/short.png"
+    { nombre: "Argentina Entrenamiento Short", categoria: "shorts", imagen: "img/argshort3.jpg", imagenes: [
+       "img/argshort2.jpg",
+       "img/argshort1.jpg",
+       "img/short.jpg"
        ],
        precio: 41990, talles: ["Sin Stock"] },
-    { nombre: "Juventus Short", categoria: "shorts", imagen: "img/juventus3.png", imagenes: [
-       "img/juventus2.png",
-       "img/juventus1.png",
-       "img/bayern3.png",
-       "img/juventus.png"
+    { nombre: "Juventus Short", categoria: "shorts", imagen: "img/juventus3.jpg", imagenes: [
+       "img/juventus2.jpg",
+       "img/juventus1.jpg",
+       "img/bayern3.jpg",
+       "img/juventus.jpg"
        ],
        precio: 41990, talles: ["Sin Stock"] },
-    { nombre: "Holanda Short", categoria: "shorts", imagen: "img/holandashort.png", imagenes: [
-       "img/holandashort3.png",
-       "img/holandashort4.png"
+    { nombre: "Holanda Short", categoria: "shorts", imagen: "img/holandashort.jpg", imagenes: [
+       "img/holandashort3.jpg",
+       "img/holandashort4.jpg"
         ],
        precio: 41990, talles: ["Sin Stock"] },
-    { nombre: "Bayern Munich Short", categoria: "shorts", imagen: "img/bayern.png", imagenes: [
-       "img/bayern1.png",
-       "img/bayern2.png"
+    { nombre: "Bayern Munich Short", categoria: "shorts", imagen: "img/bayern.jpg", imagenes: [
+       "img/bayern1.jpg",
+       "img/bayern2.jpg"
         ],
      precio: 39990, talles: ["Sin Stock"] }
 ];
